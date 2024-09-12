@@ -1,11 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom';
 
 const Home = () => {
+
+  const history = useNavigate();
+
+  const goToHome = () => {
+    history("/login");
+    };
+
+
   return (
-    <div style={{backgroundColor: "red"}}>
-        <h2>Home</h2>
-        <Link to={'/login'} style={{color: "#fff"}}>Go to login</Link>
+    <div>
+        <h2 className="text-red-500">Home</h2>
+        <Link to={'/login'} style={{color: "black"}}>Go to login</Link>
+        <button type="button" onClick={goToHome}>Login화면으로 이동</button>
+
     </div>
   )
 }
