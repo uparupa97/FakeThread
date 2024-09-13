@@ -5,7 +5,7 @@ import Adminpage from "./pages/Adminpage";
 
 function App() {
   return (
-      <div className="bg-slate-900 text-gray-100 h-dvh text-center " >
+      <div className="bg-slate-900 text-gray-100 h-full text-center " >
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home/>}/>

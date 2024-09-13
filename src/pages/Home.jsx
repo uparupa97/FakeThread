@@ -1,5 +1,7 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom';
+import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/uparupa.png';
+
 
 const Home = () => {
 
@@ -11,8 +13,12 @@ const Home = () => {
 
 
   return (
-    <div>
-        <h2 className="text-red-500">Home</h2>
+    <div className="grid place-content-center pt-36 px-10">
+      <img src={uparupa} alt="안녕하세요" className="place-content-center w-40 ml-16" />
+
+
+
+
         <Link to={'/login'} style={{color: "black"}}>Go to login</Link>
         <button type="button" onClick={goToHome}>Login화면으로 이동</button>
 
