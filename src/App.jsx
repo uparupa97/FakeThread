@@ -6,7 +6,7 @@ import Post from "./pages/Post";
 
 function App() {
   return (
-      <div className="bg-slate-900 text-gray-100 h-full text-center " >
+      <div className="flex justify-center bg-slate-900 text-gray-100 h-full text-center overflow-auto" >
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home/>}/>

@@ -1,35 +1,92 @@
-import React from 'react'
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Threadtext from '../components/Threadtext';
 import InputField from '../components/InputField';
-import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/uparupa.png';
+import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import LoginButton from '../components/LoginButton';
 import SocialButton from '../components/SocialButton';
 
-
 const Adminpage = () => {
-
   const history = useNavigate();
+  const [userForm, setUserForm] = useState([]);
 
-  const goToHome = () => {
-    history("/login");
-    };
+  // localStorage.setItem("user", JSON.stringify(userForm));
 
+  const [newUser, setNewUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  // Function to handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewUser({
+      ...newUser,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    setUserForm([
+      { id: 1, name: 'hi', email: 'user1', password: '1234' },
+      { id: 2, name: 'Anne', email: 'user2', password: '5678' },
+      { id: 3, name: 'Diana', email: 'user3', password: '91011' },
+    ]);
+  }, []);
+
+  useEffect(() => {
+    console.log('유저 추가 완료');
+  }, [userForm]);
+
+  // Function to create a new account
+  const createAccount = (e) => {
+    e.preventDefault();
+
+    if (newUser.name && newUser.email && newUser.password) {
+      const newId = userForm.length + 1; // Generate new user ID
+      setUserForm([...userForm, { id: newId, ...newUser }]); // Add new user to the userForm array
+      const nueUserForm = [...userForm, { id: newId, ...newUser }];
+      console.log('New user added:', newUser);
+      console.log('전체', userForm);
+      localStorage.setItem('user', JSON.stringify(nueUserForm));
+      setNewUser({ name: '', email: '', password: '' });
+      alert('회원가입되었습니다.');
+      history('/login');
+    }
+  };
 
   return (
-    <div className="grid place-content-center pt-36 px-10">
-      <img src={uparupa} alt="안녕하세요" className="place-content-center w-40 ml-16" />
-      <Threadtext/>
-      <form>
-        <InputField typeInput={"text"} inputValue={"name"} inputText={"Name"}/>
-        <InputField typeInput={"text"} inputValue={"email"} inputText={"Email"}/> 
-        <InputField typeInput={"password"} inputValue={"password"} inputText={"Password"}/>
-        <LoginButton buttontype={"submit"} buttonName={"Create Account"}/>
+    <div className="pt-36 px-10 w-[600px]">
+      <img src={uparupa} alt="안녕하세요" className="w-40 h-auto m-auto" />
+      <Threadtext />
+      <form onSubmit={createAccount}>
+        <InputField
+          typeInput={'text'}
+          inputChange={handleInputChange}
+          inputValue={'name'}
+          inputText={'Name'}
+        />
+        <InputField
+          typeInput={'text'}
+          inputChange={handleInputChange}
+          inputValue={'email'}
+          inputText={'Email'}
+        />
+        <InputField
+          typeInput={'password'}
+          inputChange={handleInputChange}
+          inputValue={'password'}
+          inputText={'Password'}
+        />
+        <LoginButton buttontype={'submit'} buttonName={'Create Account'} />
       </form>
-      <p className='from-neutral-100 mb-8'> 
-        <span className='inline-block mr-3'>계정이 있으신가요?</span>
-        <span className='inline-block'>
-          <Link to={'/login'} className='text-blue-500'>로그인</Link>
+      <p className="from-neutral-100 mb-8">
+        <span className="inline-block mr-3">계정이 있으신가요?</span>
+        <span className="inline-block">
+          <Link to={'/login'} className="text-blue-500">
+            로그인
+          </Link>
         </span>
       </p>
       <div className="flex items-center">
@@ -37,16 +94,9 @@ const Adminpage = () => {
         <span className="px-4 text-gray-300">or</span>
         <div className="flex-grow border-t border-gray-700"></div>
       </div>
-      <SocialButton/>
-
-
-
-
-        <Link to={'/login'} style={{color: "black"}}>Go to login</Link>
-        <button type="button" onClick={goToHome}>Login화면으로 이동</button>
-
+      <SocialButton />
     </div>
-  )
-}
+  );
+};
 
-export default Adminpage
+export default Adminpage;
