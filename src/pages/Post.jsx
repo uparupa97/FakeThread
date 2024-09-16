@@ -7,9 +7,9 @@ const Post = () => {
   const loadClicking = () => {};
 
   return (
-    <div classname="px-8 pt-6 w-[600px]">
-      <div className="flex flex-row w-[600px] p-6">
-        <Link to={'/home'} className="place-self-center text-gray-500">
+    <div className="px-8 pt-6 w-[600px] max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
+      <div className="flex flex-row w-full p-6">
+        <Link to={'/'} className="place-self-center text-gray-500">
           취소
         </Link>
         <h3 className="place-self-center font-mono text-xl m-auto">
@@ -20,9 +20,11 @@ const Post = () => {
         <div className="flex-grow border-t border-gray-700"></div>
       </div>
       <Posting />
-      <div className="flex flex-row w-[600px] p-6">
-        <p>누구에게나 답글 및 인용 허용</p>
-        <UploadButton uploadClick={loadClicking} />
+      <div className="flex flex-row w-full text-start text-gray-500">
+        <p className="w-[90%]">누구에게나 답글 및 인용 허용</p>
+        <div className="w-full">
+          <UploadButton uploadClick={loadClicking} />
+        </div>
       </div>
     </div>
   );
