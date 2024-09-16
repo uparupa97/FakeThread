@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UploadButton = ({ uploadClick, buttonMessage }) => {
+const LinkIcon = ({ uploadClick }) => {
   return (
     <div className="flex justify-end w-full">
       <button
@@ -8,10 +8,10 @@ const UploadButton = ({ uploadClick, buttonMessage }) => {
         onClick={uploadClick}
         className="mr-2 w-16 h-9 rounded-2xl bg-slate-100 hover:bg-slate-300 text-slate-900 "
       >
-        {buttonMessage}
+        게시
       </button>
     </div>
   );
 };
 
-export default UploadButton;
+export default LinkIcon;

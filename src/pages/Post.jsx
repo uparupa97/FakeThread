@@ -23,7 +23,7 @@ const Post = () => {
       <div className="flex flex-row w-full text-start text-gray-500">
         <p className="w-[90%]">누구에게나 답글 및 인용 허용</p>
         <div className="w-full">
-          <UploadButton uploadClick={loadClicking} />
+          <UploadButton buttonMessage={'게시'} uploadClick={loadClicking} />
         </div>
       </div>
     </div>
