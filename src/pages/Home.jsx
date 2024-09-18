@@ -33,8 +33,7 @@ Well if you need a book you know we
 have a selection 🤭🤗`,
     },
     {
-      profileImage:
-        'https://lh5.googleusercontent.com/proxy/RGyWWIOJiMuNmTOeWWkfeEc4MX30g1I62M4E0CtvR0LWOTQ5zrrShJjrIfksUHMqC5KWeiFNWbgqkEAdRh91f9qg5-Rh43W0DFyrC_nPkEm3s-lw',
+      profileImage: 'https://cdn.hankyung.com/photo/202407/ZA.36891140.1.jpg',
       idName: 'thespeakershack',
       textMessage: `AVID HiFi Integra amplifier and EVO
 Three speakers 🔊❤️🇬🇧🙏`,
