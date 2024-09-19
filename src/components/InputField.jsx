@@ -8,7 +8,6 @@ const InputField = ({ typeInput, inputValue, inputText, inputChange }) => {
         type={typeInput}
         onChange={inputChange} //해당값이 변경했을 떄 일어나는 것
         name={inputValue}
-        // value={valueid}
         placeholder={inputText}
         className="bg-slate-500 block rounded-lg border border-gray-800 w-full p-2 mt-4"
       ></input>

@@ -29,7 +29,6 @@ const Login = () => {
     e.preventDefault();
 
     const storedUser = JSON.parse(localStorage.getItem('user'));
-
     const foundUser = storedUser.find((user) => user.email === loginUser.email);
 
     if (foundUser) {
@@ -57,7 +56,7 @@ const Login = () => {
       <Threadtext />
       <form id="login-form" onSubmit={handleEvent}>
         <InputField
-          typeInput={'text'}
+          typeInput={'email'}
           onChange={handleInputChange}
           inputValue={inputEmail}
           inputText={'Email'}

@@ -48,7 +48,7 @@ const Adminpage = () => {
       setUserForm([...userForm, { id: newId, ...newUser }]); // Add new user to the userForm array
       const nueUserForm = [...userForm, { id: newId, ...newUser }];
       console.log('New user added:', newUser);
-      console.log('전체', userForm);
+      console.log('전체', nueUserForm);
       localStorage.setItem('user', JSON.stringify(nueUserForm));
       setNewUser({ name: '', email: '', password: '' });
       alert('회원가입되었습니다.');
