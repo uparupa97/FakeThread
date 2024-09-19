@@ -4,12 +4,23 @@ import UploadButton from '../components/UploadButton';
 import ContentBox from '../components/ContentBox';
 import LinkIcon from '../components/LinkIcon';
 import { useNavigate } from 'react-router-dom';
+import { GoHome } from 'react-icons/go';
+import { PiNotePencilThin } from 'react-icons/pi';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 
 const Home = () => {
   const history = useNavigate();
 
   const logoutButton = () => {
     history('/login');
+  };
+
+  const WriteButton = () => {
+    history('/post');
+  };
+
+  const HomeButton = () => {
+    history('/');
   };
 
   const messagecontent = [
@@ -45,7 +56,11 @@ Three speakers 🔊❤️🇬🇧🙏`,
       <div className="grid grid-cols-3 my-2">
         <div></div>
         <div className="place-self-center">
-          <img src={uparupa} alt="안녕하세요" className="w-40" />
+          <img
+            src={uparupa}
+            alt="안녕하세요"
+            className="w-40 outline-none shadow-none border-none"
+          />
         </div>
         <div className="justify-self-end place-self-center">
           <UploadButton buttonMessage={'로그아웃'} uploadClick={logoutButton} />
@@ -74,10 +89,13 @@ Three speakers 🔊❤️🇬🇧🙏`,
         />
       </div>
 
-      <div className="flex items-center">
-        <LinkIcon />
-        <LinkIcon />
-        <LinkIcon />
+      <div className="flex justify-center gap-x-4 p-4 mt-2 -mr-6 bg-slate-700">
+        <LinkIcon uploadClick={HomeButton} linkNav={<GoHome size="46px" />} />
+        <LinkIcon
+          uploadClick={WriteButton}
+          linkNav={<PiNotePencilThin size="46px" />}
+        />
+        <LinkIcon linkNav={<IoPersonCircleOutline size="46px" />} />
       </div>
     </div>
   );
