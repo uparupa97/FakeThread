@@ -7,52 +7,52 @@ import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/th
 import SocialButton from '../components/SocialButton';
 
 const Login = () => {
-  // const handleInputChange = (data) => {
-  //   console.log('handleinputchange', data);
+  const handleInputChange = (data) => {
+    console.log('handleinputchange', data);
+  };
+  // const history = useNavigate();
+
+  // const [inputEmail, setInputEmail] = useState('email');
+  // const [inputPassword, setInputPassword] = useState('password');
+
+  // const [loginUser, setLoginUser] = useState({
+  //   email: '',
+  //   password: '',
+  // });
+
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setLoginUser({
+  //     ...loginUser,
+  //     [name]: value,
+  //   });
   // };
-  const history = useNavigate();
 
-  const [inputEmail, setInputEmail] = useState('email');
-  const [inputPassword, setInputPassword] = useState('password');
+  // const handleEvent = (e) => {
+  //   e.preventDefault();
 
-  const [loginUser, setLoginUser] = useState({
-    email: '',
-    password: '',
-  });
+  //   const storedUser = JSON.parse(localStorage.getItem('user'));
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setLoginUser({
-      ...loginUser,
-      [name]: value,
-    });
-  };
+  //   const foundUser = storedUser.find((user) => user.email === loginUser.email);
 
-  const handleEvent = (e) => {
-    e.preventDefault();
-
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-
-    const foundUser = storedUser.find((user) => user.email === loginUser.email);
-
-    if (foundUser) {
-      if (foundUser.password === loginUser.password) {
-        setLoginUser({ name: '', email: '', password: '' });
-        alert('로그인 성공!');
-        history('/');
-      } else {
-        alert('비밀번호가 틀렸습니다.');
-        setLoginUser({ name: '', email: '', password: '' });
-        setInputEmail('');
-        setInputPassword('');
-      }
-    } else {
-      alert('해당되는 사용자는 없습니다.');
-      setLoginUser({ name: '', email: '', password: '' });
-      setInputEmail('');
-      setInputPassword('');
-    }
-  };
+  //   if (foundUser) {
+  //     if (foundUser.password === loginUser.password) {
+  //       setLoginUser({ name: '', email: '', password: '' });
+  //       alert('로그인 성공!');
+  //       history('/');
+  //     } else {
+  //       alert('비밀번호가 틀렸습니다.');
+  //       setLoginUser({ name: '', email: '', password: '' });
+  //       setInputEmail('');
+  //       setInputPassword('');
+  //     }
+  //   } else {
+  //     alert('해당되는 사용자는 없습니다.');
+  //     setLoginUser({ name: '', email: '', password: '' });
+  //     setInputEmail('');
+  //     setInputPassword('');
+  //   }
+  // };
 
   return (
     <div className="pt-36 px-10 w-[600px]">
@@ -62,13 +62,11 @@ const Login = () => {
         <InputField
           typeInput={'text'}
           onChange={handleInputChange}
-          inputValue={inputEmail}
           inputText={'Email'}
         />
         <InputField
           typeInput={'password'}
           onChange={handleInputChange}
-          inputValue={inputPassword}
           inputText={'Password'}
         />
         <LoginButton buttontype={'submit'} buttonName={'Login'} />
