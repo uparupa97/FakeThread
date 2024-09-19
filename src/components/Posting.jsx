@@ -14,7 +14,7 @@ const Posting = () => {
         <p className="my-2 ml-4 font-bold text-xl">Uparupa</p>
         <textarea
           placeholder="문구를 작성하세요"
-          className="w-full h-[400px] m-4 rounded-lg bg-slate-800"
+          className="w-full h-[400px] m-4 p-3 rounded-lg bg-slate-800"
         ></textarea>
       </div>
     </div>
