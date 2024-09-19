@@ -1,19 +1,6 @@
 import React from 'react';
 
 const InputField = ({ typeInput, inputValue, inputText, inputChange }) => {
-  // const [valueid, SetValueid] = useState('');
-
-  // const inputChange = (event) => {
-  //   console.log('event', event.target.value);
-  //   const { value } = event.target; // value = event.target.value랑 동일한 의미임
-  //   SetValueid(value);
-  //   onChange(value);
-  // };
-
-  // console.log('valueid', valueid);
-
-  // useEffect 함수 만들어보기
-
   return (
     <div>
       <input

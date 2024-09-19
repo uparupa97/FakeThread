@@ -7,9 +7,6 @@ import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/th
 import SocialButton from '../components/SocialButton';
 
 const Login = () => {
-  // const handleInputChange = (data) => {
-  //   console.log('handleinputchange', data);
-  // };
   const history = useNavigate();
 
   const [inputEmail, setInputEmail] = useState('email');
