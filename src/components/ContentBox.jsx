@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CiHeart } from 'react-icons/ci';
+// import { CiHeart } from 'react-icons/ci';
 import { FaPen } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
@@ -37,10 +37,13 @@ const ContentBox = ({ profileImage, name, textMessage }) => {
           </div>
         </div>
         <p className="w-full m-4 rounded-lg bg-slate-800 p-3">{textMessage}</p>
-        <button type="button" onClick={heartcounter}>
-          <CiHeart className="h-10" />
-          {heartCount}
-        </button>
+        <div className="flex flex-row">
+          <button type="button" onClick={heartcounter} className="flex">
+            <span className="place-self-center hover:text-red-500">♥</span>
+            {/* <CiHeart />{' '} */}
+            <span className="ml-2 text-gray-400">{heartCount}</span>
+          </button>
+        </div>
       </div>
     </div>
   );
