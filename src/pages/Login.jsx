@@ -56,14 +56,14 @@ const Login = () => {
       <Threadtext />
       <form id="login-form" onSubmit={handleEvent}>
         <InputField
-          typeInput={'email'}
-          onChange={handleInputChange}
+          typeInput={'text'}
+          inputChange={handleInputChange}
           inputValue={inputEmail}
           inputText={'Email'}
         />
         <InputField
           typeInput={'password'}
-          onChange={handleInputChange}
+          inputChange={handleInputChange}
           inputValue={inputPassword}
           inputText={'Password'}
         />
