@@ -7,6 +7,9 @@ import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/th
 import SocialButton from '../components/SocialButton';
 
 const Login = () => {
+  // const handleInputChange = (data) => {
+  //   console.log('handleinputchange', data);
+  // };
   const history = useNavigate();
 
   const [inputEmail, setInputEmail] = useState('email');
@@ -58,13 +61,13 @@ const Login = () => {
       <form id="login-form" onSubmit={handleEvent}>
         <InputField
           typeInput={'text'}
-          inputChange={handleInputChange}
+          onChange={handleInputChange}
           inputValue={inputEmail}
           inputText={'Email'}
         />
         <InputField
           typeInput={'password'}
-          inputChange={handleInputChange}
+          onChange={handleInputChange}
           inputValue={inputPassword}
           inputText={'Password'}
         />
