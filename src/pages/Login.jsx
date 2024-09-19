@@ -11,17 +11,21 @@ const Login = () => {
 
   const [isClear, setIsClear] = useState(false);
 
-  // const [inputEmail, setInputEmail] = useState('email');
-  // const [inputPassword, setInputPassword] = useState('password');
-
   const [loginUser, setLoginUser] = useState({
     email: '',
     password: '',
   });
 
+  // const handleInputChange = (value, inputName) => {
+  //   // setIsClear(false);
+  //   const newLoginUser = { ...loginUser, [inputName]: value };
+  //   console.log(newLoginUser);
+  //   setLoginUser(newLoginUser);
+  // };
+
   const handleInputChange = (value, inputName) => {
-    setIsClear(false);
     const newLoginUser = { ...loginUser, [inputName]: value };
+    console.log(newLoginUser);
     setLoginUser(newLoginUser);
   };
 
@@ -70,6 +74,7 @@ const Login = () => {
           inputName={'email'}
           inputText={'Email'}
           isClear={isClear}
+          test={loginUser.email}
         />
         <InputField
           typeInput={'password'}
@@ -77,6 +82,7 @@ const Login = () => {
           inputName={'password'}
           inputText={'Password'}
           isClear={isClear}
+          test={loginUser.password}
         />
         <LoginButton buttontype={'submit'} buttonName={'Login'} />
       </form>
