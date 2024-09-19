@@ -8,9 +8,8 @@ import SocialButton from '../components/SocialButton';
 
 const Adminpage = () => {
   const history = useNavigate();
-  const [userForm, setUserForm] = useState([]);
 
-  // localStorage.setItem("user", JSON.stringify(userForm));
+  const [userForm, setUserForm] = useState([]);
 
   const [newUser, setNewUser] = useState({
     name: '',
@@ -19,12 +18,9 @@ const Adminpage = () => {
   });
 
   // Function to handle input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewUser({
-      ...newUser,
-      [name]: value,
-    });
+  const handleInputChange = (value, inputName) => {
+    const newLoginUser = { ...newUser, [inputName]: value };
+    setNewUser(newLoginUser);
   };
 
   useEffect(() => {
@@ -64,19 +60,19 @@ const Adminpage = () => {
         <InputField
           typeInput={'text'}
           inputChange={handleInputChange}
-          inputValue={'name'}
+          inputName={'name'}
           inputText={'Name'}
         />
         <InputField
           typeInput={'text'}
           inputChange={handleInputChange}
-          inputValue={'email'}
+          inputName={'email'}
           inputText={'Email'}
         />
         <InputField
           typeInput={'password'}
           inputChange={handleInputChange}
-          inputValue={'password'}
+          inputName={'password'}
           inputText={'Password'}
         />
         <LoginButton buttontype={'submit'} buttonName={'Create Account'} />

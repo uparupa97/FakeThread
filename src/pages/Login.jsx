@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputField from '../components/InputField';
 import LoginButton from '../components/LoginButton';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,45 +9,54 @@ import SocialButton from '../components/SocialButton';
 const Login = () => {
   const history = useNavigate();
 
-  const [inputEmail, setInputEmail] = useState('email');
-  const [inputPassword, setInputPassword] = useState('password');
+  const [isClear, setIsClear] = useState(false);
+
+  // const [inputEmail, setInputEmail] = useState('email');
+  // const [inputPassword, setInputPassword] = useState('password');
 
   const [loginUser, setLoginUser] = useState({
     email: '',
     password: '',
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setLoginUser({
-      ...loginUser,
-      [name]: value,
-    });
+  const handleInputChange = (value, inputName) => {
+    setIsClear(false);
+    const newLoginUser = { ...loginUser, [inputName]: value };
+    setLoginUser(newLoginUser);
   };
+
+  const [storedUser, setStoredUser] = useState(null);
+  useEffect(() => {
+    setStoredUser(JSON.parse(localStorage.getItem('user')));
+  }, []);
 
   const handleEvent = (e) => {
     e.preventDefault();
 
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (!storedUser) {
+      alert('user없습니다');
+      setLoginUser({ email: '', password: '' });
+      return;
+    }
+
+    // const storedUser = JSON.parse(localStorage.getItem('user'));
     const foundUser = storedUser.find((user) => user.email === loginUser.email);
+    // const foundUser = storedUser.get(loginUser.email);
 
     if (foundUser) {
       if (foundUser.password === loginUser.password) {
-        setLoginUser({ name: '', email: '', password: '' });
+        setLoginUser({ email: '', password: '' });
         alert('로그인 성공!');
         history('/');
       } else {
         alert('비밀번호가 틀렸습니다.');
-        setLoginUser({ name: '', email: '', password: '' });
-        setInputEmail('');
-        setInputPassword('');
+        setLoginUser({ email: '', password: '' });
       }
     } else {
       alert('해당되는 사용자는 없습니다.');
-      setLoginUser({ name: '', email: '', password: '' });
-      setInputEmail('');
-      setInputPassword('');
+      setLoginUser({ email: '', password: '' });
     }
+    setIsClear(true);
   };
 
   return (
@@ -58,14 +67,16 @@ const Login = () => {
         <InputField
           typeInput={'text'}
           inputChange={handleInputChange}
-          inputValue={inputEmail}
+          inputName={'email'}
           inputText={'Email'}
+          isClear={isClear}
         />
         <InputField
           typeInput={'password'}
           inputChange={handleInputChange}
-          inputValue={inputPassword}
+          inputName={'password'}
           inputText={'Password'}
+          isClear={isClear}
         />
         <LoginButton buttontype={'submit'} buttonName={'Login'} />
       </form>
