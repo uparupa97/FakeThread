@@ -19,15 +19,21 @@ const Login = () => {
     setLoginUser(newFormdata);
   };
 
-  useEffect(() => {
-    console.log('formdata', loginUser);
-  }, [loginUser]);
+  // useEffect(() => {
+  //   console.log('formdata', loginUser);
+  // }, [loginUser]);
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    console.log('neformdata', loginUser);
+  };
 
   return (
     <div className="pt-36 px-10 w-[600px]">
       <img src={uparupa} alt="안녕하세요" className="w-40 h-auto m-auto" />
       <Threadtext />
-      <form id="login-form">
+      <form id="login-form" onSubmit={handleLogin}>
         <InputField
           typeInput={'email'}
           onChange={handleInputChange}
