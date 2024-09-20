@@ -19,7 +19,6 @@ const InputField = ({ typeInput, inputChange, inputName, inputText, test }) => {
         type={typeInput}
         onChange={boxChange}
         name={inputName}
-        // value={isClear ? '' : value}
         value={test}
         placeholder={inputText}
         className="bg-slate-500 block rounded-lg border border-gray-800 w-full p-2 mt-4"

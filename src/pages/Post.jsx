@@ -1,11 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Posting from '../components/Posting';
 import UploadButton from '../components/UploadButton';
 import Nav from '../components/Nav';
 
-const Post = () => {
-  const loadClicking = () => {};
+const Post = ({ onPost }) => {
+  const history = useNavigate();
+  const [postContent, setPostContent] = useState('');
+
+  const postinput = (data) => {
+    setPostContent(data);
+  };
+
+  const handlepost = (event) => {
+    event.preventDefault();
+    onPost(postContent);
+    history('/');
+  };
 
   return (
     <div className="px-8 pt-6 w-[600px] max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
@@ -20,13 +31,15 @@ const Post = () => {
       <div className="flex items-center">
         <div className="flex-grow border-t border-gray-700"></div>
       </div>
-      <Posting />
-      <div className="flex flex-row w-full text-start text-gray-500">
-        <p className="w-[90%]">누구에게나 답글 및 인용 허용</p>
-        <div className="w-full">
-          <UploadButton buttonMessage={'게시'} uploadClick={loadClicking} />
+      <form id="post" onSubmit={handlepost}>
+        <Posting postChange={postinput} />
+        <div className="flex flex-row w-full text-start text-gray-500">
+          <p className="w-[90%]">누구에게나 답글 및 인용 허용</p>
+          <div className="w-full">
+            <UploadButton buttonMessage={'게시'} />
+          </div>
         </div>
-      </div>
+      </form>
       <Nav />
     </div>
   );

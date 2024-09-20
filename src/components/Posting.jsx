@@ -2,7 +2,11 @@ import React from 'react';
 import profileImage from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/uparupa.png';
 import Nav from './Nav';
 
-const Posting = () => {
+const Posting = ({ postChange }) => {
+  const handleChange = (event) => {
+    postChange(event.target.value);
+  };
+
   return (
     <div className="px-3 py-2 flex flex-row">
       <img
@@ -16,6 +20,7 @@ const Posting = () => {
         <textarea
           placeholder="문구를 작성하세요"
           className="w-full h-[400px] m-4 p-3 rounded-lg bg-slate-800"
+          onChange={handleChange}
         ></textarea>
       </div>
       <Nav />

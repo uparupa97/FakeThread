@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import UploadButton from '../components/UploadButton';
 import ContentBox from '../components/ContentBox';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { inimessagecontent } from '../data/response';
 import Nav from '../components/Nav';
 
-const Home = () => {
+const Home = ({ postcontent }) => {
   const history = useNavigate();
 
   const [messagecontent, setMessagecontent] = useState(inimessagecontent);
@@ -14,6 +14,20 @@ const Home = () => {
   const logoutButton = () => {
     history('/login');
   };
+
+  // 진입시 딱 한번 실행
+  useEffect(() => {
+    if (!postcontent) return;
+    const newFeed = {
+      idName: 'anonymous',
+      profileImage:
+        'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
+      textMessage: postcontent,
+    };
+    // feedList에 객체 추가
+    setMessagecontent([newFeed, ...messagecontent]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="px-8 pt-6 w-[600px] max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
