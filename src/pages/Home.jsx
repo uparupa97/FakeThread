@@ -1,55 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import UploadButton from '../components/UploadButton';
 import ContentBox from '../components/ContentBox';
-import LinkIcon from '../components/LinkIcon';
 import { useNavigate } from 'react-router-dom';
-import { GoHome } from 'react-icons/go';
-import { PiNotePencilThin } from 'react-icons/pi';
-import { IoPersonCircleOutline } from 'react-icons/io5';
+import { inimessagecontent } from '../data/response';
+import Nav from '../components/Nav';
 
 const Home = () => {
   const history = useNavigate();
 
+  const [messagecontent, setMessagecontent] = useState(inimessagecontent);
+
   const logoutButton = () => {
     history('/login');
   };
-
-  const WriteButton = () => {
-    history('/post');
-  };
-
-  const HomeButton = () => {
-    history('/');
-  };
-
-  const messagecontent = [
-    {
-      profileImage:
-        'https://images.wagwalkingweb.com/media/breed/maltese/appearance/maltese.png',
-      idName: 'Uparupa',
-      textMessage: `The subway is not fancy—in fact, riding it
-can suck with rat, smells and all lol—but
-there’ll never be anything more iconic?
-and effective for getting around the city,
-especially during NYFW.`,
-    },
-    {
-      profileImage:
-        'https://d128mjo55rz53e.cloudfront.net/media/images/blog-breed-french_pomeranian_2.max-400x400.format-jpeg.jpg',
-      idName: 'steamylit',
-      textMessage: `NO ONE TOLD ME IT WAS NATIONAL
-READ A BOOK DAY? WHY AM I WORKING?
-Well if you need a book you know we
-have a selection 🤭🤗`,
-    },
-    {
-      profileImage: 'https://cdn.hankyung.com/photo/202407/ZA.36891140.1.jpg',
-      idName: 'thespeakershack',
-      textMessage: `AVID HiFi Integra amplifier and EVO
-Three speakers 🔊❤️🇬🇧🙏`,
-    },
-  ];
 
   return (
     <div className="px-8 pt-6 w-[600px] max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
@@ -72,31 +36,12 @@ Three speakers 🔊❤️🇬🇧🙏`,
       </div>
 
       <div>
-        <ContentBox
-          profileImage={messagecontent[0].profileImage}
-          name={messagecontent[0].idName}
-          textMessage={messagecontent[0].textMessage}
-        />
-        <ContentBox
-          profileImage={messagecontent[1].profileImage}
-          name={messagecontent[1].idName}
-          textMessage={messagecontent[1].textMessage}
-        />
-        <ContentBox
-          profileImage={messagecontent[2].profileImage}
-          name={messagecontent[2].idName}
-          textMessage={messagecontent[2].textMessage}
-        />
+        {messagecontent.map((feed) => (
+          <ContentBox key={feed.id} data={feed} />
+        ))}
       </div>
 
-      <div className="flex justify-center gap-x-4 p-4 mt-2 -mr-6 bg-slate-700">
-        <LinkIcon uploadClick={HomeButton} linkNav={<GoHome size="46px" />} />
-        <LinkIcon
-          uploadClick={WriteButton}
-          linkNav={<PiNotePencilThin size="46px" />}
-        />
-        <LinkIcon linkNav={<IoPersonCircleOutline size="46px" />} />
-      </div>
+      <Nav />
     </div>
   );
 };

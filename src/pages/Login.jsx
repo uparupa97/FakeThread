@@ -9,8 +9,6 @@ import SocialButton from '../components/SocialButton';
 const Login = () => {
   const history = useNavigate();
 
-  const [isClear, setIsClear] = useState(false);
-
   const [loginUser, setLoginUser] = useState({
     email: '',
     password: '',
@@ -60,7 +58,6 @@ const Login = () => {
       alert('해당되는 사용자는 없습니다.');
       setLoginUser({ email: '', password: '' });
     }
-    setIsClear(true);
   };
 
   return (
@@ -73,7 +70,6 @@ const Login = () => {
           inputChange={handleInputChange}
           inputName={'email'}
           inputText={'Email'}
-          isClear={isClear}
           test={loginUser.email}
         />
         <InputField
@@ -81,7 +77,6 @@ const Login = () => {
           inputChange={handleInputChange}
           inputName={'password'}
           inputText={'Password'}
-          isClear={isClear}
           test={loginUser.password}
         />
         <LoginButton buttontype={'submit'} buttonName={'Login'} />

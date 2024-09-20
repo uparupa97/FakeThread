@@ -4,9 +4,11 @@ import { FaPen } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
-const ContentBox = ({ profileImage, name, textMessage }) => {
+const ContentBox = ({ data }) => {
   const buttonFunction = useNavigate();
   const [heartCount, setheartCount] = useState(0);
+
+  const { profileImage, idName, textMessage } = data;
 
   const rewrite = () => {
     buttonFunction('/post');
@@ -26,7 +28,7 @@ const ContentBox = ({ profileImage, name, textMessage }) => {
 
       <div className="flex flex-col text-left w-full">
         <div className="flex flex-row">
-          <p className="mt-2 ml-4 font-bold text-xl">{name}</p>
+          <p className="mt-2 ml-4 font-bold text-xl">{idName}</p>
           <div className="flex ml-auto space-x-2">
             <button type="button" onClick={rewrite}>
               <FaPen className="h-8" />

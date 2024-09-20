@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Posting from '../components/Posting';
 import UploadButton from '../components/UploadButton';
+import Nav from '../components/Nav';
 
 const Post = () => {
   const loadClicking = () => {};
@@ -26,6 +27,7 @@ const Post = () => {
           <UploadButton buttonMessage={'게시'} uploadClick={loadClicking} />
         </div>
       </div>
+      <Nav />
     </div>
   );
 };

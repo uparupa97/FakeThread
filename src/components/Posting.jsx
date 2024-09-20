@@ -1,5 +1,6 @@
 import React from 'react';
 import profileImage from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/uparupa.png';
+import Nav from './Nav';
 
 const Posting = () => {
   return (
@@ -17,6 +18,7 @@ const Posting = () => {
           className="w-full h-[400px] m-4 p-3 rounded-lg bg-slate-800"
         ></textarea>
       </div>
+      <Nav />
     </div>
   );
 };

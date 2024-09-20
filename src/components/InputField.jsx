@@ -1,13 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const InputField = ({
-  typeInput,
-  inputChange,
-  inputName,
-  inputText,
-  isClear,
-  test,
-}) => {
+const InputField = ({ typeInput, inputChange, inputName, inputText, test }) => {
   // const [value, setValue] = useState('');
 
   // const boxChange = (event) => {
