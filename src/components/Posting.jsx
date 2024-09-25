@@ -9,8 +9,6 @@ const Posting = ({ postChange, profileImage, idName, textMessage }) => {
     setValue(event.target.value);
   };
 
-  console.log('is it?', profileImage, idName, textMessage);
-
   return (
     <div className="px-3 py-2 flex flex-row">
       <img
@@ -23,7 +21,7 @@ const Posting = ({ postChange, profileImage, idName, textMessage }) => {
         <p className="my-2 ml-4 font-bold text-xl">{idName}</p>
         <textarea
           placeholder="문구를 작성하세요"
-          className="w-full h-[400px] m-4 p-3 rounded-lg bg-slate-800"
+          className="w-full h-auto m-4 p-3 rounded-lg bg-slate-800"
           onChange={handleChange}
           value={value}
         ></textarea>
