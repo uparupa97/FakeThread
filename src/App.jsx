@@ -9,7 +9,7 @@ import Edit from './pages/Edit';
 
 function App() {
   const [postContent, setPostContent] = useState('');
-  const [editContent, setEditContent] = useState('');
+  const [editContent, setEditContent] = useState(null);
 
   const postinput = (data) => {
     setPostContent(data);

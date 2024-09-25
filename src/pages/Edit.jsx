@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Posting from '../components/Posting';
 import UploadButton from '../components/UploadButton';
@@ -7,9 +7,15 @@ import Nav from '../components/Nav';
 const Edit = ({ editContent }) => {
   console.log('editonce', editContent);
 
+  const { profileImage, textMessage, idName } = editContent;
+
+  const [postContent, setPostContent] = useState('');
+
   const history = useNavigate();
 
-  const postinput = (data) => {};
+  const postinput = (data) => {
+    setPostContent(data);
+  };
 
   const handlepost = (event) => {
     event.preventDefault();
@@ -32,9 +38,9 @@ const Edit = ({ editContent }) => {
       <form id="post" onSubmit={handlepost}>
         <Posting
           postChange={postinput}
-          profileImage={editContent.profileImage}
-          idName={editContent.idName}
-          textMessage={editContent.textMessage}
+          profileImage={profileImage}
+          idName={idName}
+          textMessage={textMessage}
         />
         <div className="flex flex-row w-full text-start text-gray-500">
           <p className="w-[90%]">누구에게나 답글 및 인용 허용</p>

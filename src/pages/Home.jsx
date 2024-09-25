@@ -41,7 +41,7 @@ const Home = ({ postcontent, onEdit }) => {
     const filterList = messagecontent.filter(
       (item) => item.id === selectedData.id
     );
-    onEdit(filterList);
+    onEdit(filterList[0]);
     history('/edit');
   };
 

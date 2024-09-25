@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Nav from './Nav';
 
 const Posting = ({ postChange, profileImage, idName, textMessage }) => {
+  const [value, setValue] = useState(textMessage);
+
   const handleChange = (event) => {
     postChange(event.target.value);
+    setValue(event.target.value);
   };
+
+  console.log('is it?', profileImage, idName, textMessage);
 
   return (
     <div className="px-3 py-2 flex flex-row">
@@ -20,6 +25,7 @@ const Posting = ({ postChange, profileImage, idName, textMessage }) => {
           placeholder="문구를 작성하세요"
           className="w-full h-[400px] m-4 p-3 rounded-lg bg-slate-800"
           onChange={handleChange}
+          value={value}
         ></textarea>
       </div>
       <Nav />
