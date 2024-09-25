@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { inimessagecontent } from '../data/response';
 import Nav from '../components/Nav';
 
-const Home = ({ postcontent }) => {
+const Home = ({ postcontent, onEdit }) => {
   const history = useNavigate();
 
   const [messagecontent, setMessagecontent] = useState(inimessagecontent);
@@ -19,6 +19,7 @@ const Home = ({ postcontent }) => {
   useEffect(() => {
     if (!postcontent) return;
     const newFeed = {
+      id: messagecontent.length + 1,
       idName: 'anonymous',
       profileImage:
         'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
@@ -28,6 +29,21 @@ const Home = ({ postcontent }) => {
     setMessagecontent([newFeed, ...messagecontent]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDelete = (selectedData) => {
+    const filterList = messagecontent.filter(
+      (item) => item.id !== selectedData.id
+    );
+    setMessagecontent(filterList);
+  };
+
+  const handleRewrite = (selectedData) => {
+    const filterList = messagecontent.filter(
+      (item) => item.id === selectedData.id
+    );
+    onEdit(filterList);
+    history('/edit');
+  };
 
   return (
     <div className="px-8 pt-6 w-[600px] max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
@@ -51,7 +67,12 @@ const Home = ({ postcontent }) => {
 
       <div>
         {messagecontent.map((feed) => (
-          <ContentBox key={feed.id} data={feed} />
+          <ContentBox
+            key={feed.id}
+            data={feed}
+            onDelete={handleDelete}
+            onRewrite={handleRewrite}
+          />
         ))}
       </div>
 

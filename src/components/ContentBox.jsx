@@ -2,20 +2,28 @@ import React, { useState } from 'react';
 // import { CiHeart } from 'react-icons/ci';
 import { FaPen } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
 
-const ContentBox = ({ data }) => {
-  const buttonFunction = useNavigate();
+const ContentBox = ({ data, onDelete, onRewrite }) => {
   const [heartCount, setheartCount] = useState(0);
 
   const { profileImage, idName, textMessage } = data;
 
-  const rewrite = () => {
-    buttonFunction('/post');
-  };
-
   const heartcounter = () => {
     setheartCount((prev) => prev + 1);
+  };
+
+  const rewriteContent = () => {
+    const ok = window.confirm('다시 쓰실 것인가요?');
+    if (ok) {
+      onRewrite(data);
+    }
+  };
+
+  const deleteContent = () => {
+    const ok = window.confirm('정말 취소하실 것인가요?');
+    if (ok) {
+      onDelete(data);
+    }
   };
 
   return (
@@ -30,11 +38,11 @@ const ContentBox = ({ data }) => {
         <div className="flex flex-row">
           <p className="mt-2 ml-4 font-bold text-xl">{idName}</p>
           <div className="flex ml-auto space-x-2">
-            <button type="button" onClick={rewrite}>
-              <FaPen className="h-8" />
+            <button type="button">
+              <FaPen className="h-8" onClick={rewriteContent} />
             </button>
             <button type="button">
-              <MdDelete className="h-8" />
+              <MdDelete className="h-8" onClick={deleteContent} />
             </button>
           </div>
         </div>

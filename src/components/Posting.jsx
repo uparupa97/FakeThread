@@ -1,8 +1,7 @@
 import React from 'react';
-import profileImage from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/uparupa.png';
 import Nav from './Nav';
 
-const Posting = ({ postChange }) => {
+const Posting = ({ postChange, profileImage, idName, textMessage }) => {
   const handleChange = (event) => {
     postChange(event.target.value);
   };
@@ -16,7 +15,7 @@ const Posting = ({ postChange }) => {
       />
 
       <div className="flex flex-col text-left w-full">
-        <p className="my-2 ml-4 font-bold text-xl">Uparupa</p>
+        <p className="my-2 ml-4 font-bold text-xl">{idName}</p>
         <textarea
           placeholder="문구를 작성하세요"
           className="w-full h-[400px] m-4 p-3 rounded-lg bg-slate-800"

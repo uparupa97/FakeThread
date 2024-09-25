@@ -1,5 +1,6 @@
 export const inimessagecontent = [
     {
+      id: 1,
       profileImage:
         'https://images.wagwalkingweb.com/media/breed/maltese/appearance/maltese.png',
       idName: 'Uparupa',
@@ -10,6 +11,7 @@ and effective for getting around the city,
 especially during NYFW.`,
     },
     {
+      id: 2, 
       profileImage:
         'https://d128mjo55rz53e.cloudfront.net/media/images/blog-breed-french_pomeranian_2.max-400x400.format-jpeg.jpg',
       idName: 'steamylit',
@@ -19,18 +21,21 @@ Well if you need a book you know we
 have a selection 🤭🤗`,
     },
     {
+      id: 3, 
       profileImage: 'https://cdn.hankyung.com/photo/202407/ZA.36891140.1.jpg',
       idName: 'aaaa',
       textMessage: `dddd HiFi Integra amplifier and EVO
 Three speakers 🔊❤️🇬🇧🙏`,
     },
     {
+      id: 4, 
         profileImage: 'https://cdn.hankyung.com/photo/202407/ZA.36891140.1.jpg',
         idName: 'sss',
         textMessage: `AVID HiFi Integra amplifier and EVO
   Three speakers 🔊❤️🇬🇧🙏`,
       },
       {
+        id: 5, 
         profileImage: 'https://cdn.hankyung.com/photo/202407/ZA.36891140.1.jpg',
         idName: 'ddd',
         textMessage: `AVID HiFi Integra amplifier and EVO
