@@ -21,7 +21,7 @@ const Posting = ({ postChange, profileImage, idName, textMessage }) => {
         <p className="my-2 ml-4 font-bold text-xl">{idName}</p>
         <textarea
           placeholder="문구를 작성하세요"
-          className="w-full h-auto m-4 p-3 rounded-lg bg-slate-800"
+          className="w-full h-40 mb-4 p-3 placeholder-churead-gray-300 placeholder-opacity-60 text-churead-gray-400 bg-gray-800 outline-none resize-none"
           onChange={handleChange}
           value={value}
         ></textarea>

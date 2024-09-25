@@ -10,6 +10,7 @@ import Edit from './pages/Edit';
 function App() {
   const [postContent, setPostContent] = useState('');
   const [editContent, setEditContent] = useState(null);
+  const [editHome, setEditHome] = useState(null);
 
   const postinput = (data) => {
     setPostContent(data);
@@ -26,13 +27,27 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home postcontent={postContent} onEdit={editinput} />}
+            element={
+              <Home
+                postcontent={postContent}
+                onEdit={editinput}
+                editHome={editHome}
+              />
+            }
           />
           <Route path="/login" element={<Login />} />
           <Route path="/adminpage" element={<Adminpage />} />
           <Route path="/post" element={<Post onPost={postinput} />} />
           <Route path="/profile" element={<Profilepage />} />
-          <Route path="/edit" element={<Edit editContent={editContent} />} />
+          <Route
+            path="/edit"
+            element={
+              <Edit
+                editContent={editContent}
+                editFinish={(data) => setEditHome(data)}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

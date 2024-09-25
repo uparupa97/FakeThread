@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { inimessagecontent } from '../data/response';
 import Nav from '../components/Nav';
 
-const Home = ({ postcontent, onEdit }) => {
+const Home = ({ postcontent, onEdit, editHome }) => {
+  console.log('editFinish', editHome);
   const history = useNavigate();
 
   const [messagecontent, setMessagecontent] = useState(inimessagecontent);
@@ -29,6 +30,16 @@ const Home = ({ postcontent, onEdit }) => {
     setMessagecontent([newFeed, ...messagecontent]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!editHome) return;
+    const resultFeedlist = messagecontent.map((item) => {
+      if (item.id === editHome.id) return editHome;
+      return item;
+    });
+
+    setMessagecontent(resultFeedlist);
+  }, [editHome]);
 
   const handleDelete = (selectedData) => {
     const filterList = messagecontent.filter(

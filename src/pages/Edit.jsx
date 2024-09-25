@@ -4,12 +4,12 @@ import Posting from '../components/Posting';
 import UploadButton from '../components/UploadButton';
 import Nav from '../components/Nav';
 
-const Edit = ({ editContent }) => {
+const Edit = ({ editContent, editFinish }) => {
   console.log('editonce', editContent);
 
   const { profileImage, textMessage, idName } = editContent;
 
-  const [postContent, setPostContent] = useState('');
+  const [postContent, setPostContent] = useState(textMessage);
 
   const history = useNavigate();
 
@@ -17,8 +17,11 @@ const Edit = ({ editContent }) => {
     setPostContent(data);
   };
 
-  const handlepost = (event) => {
+  const handleEdit = (event) => {
     event.preventDefault();
+    const editedItem = { ...editContent, textMessage: postContent };
+    editFinish(editedItem);
+    console.log(editedItem, 'editedItem');
     history('/');
   };
 
@@ -35,7 +38,7 @@ const Edit = ({ editContent }) => {
       <div className="flex items-center">
         <div className="flex-grow border-t border-gray-700"></div>
       </div>
-      <form id="post" onSubmit={handlepost}>
+      <form id="post" onSubmit={handleEdit}>
         <Posting
           postChange={postinput}
           profileImage={profileImage}

@@ -46,7 +46,9 @@ const ContentBox = ({ data, onDelete, onRewrite }) => {
             </button>
           </div>
         </div>
-        <p className="w-full m-4 rounded-lg bg-slate-800 p-3">{textMessage}</p>
+        <p className="w-full min-h-12 max-h-60 m-4 rounded-lg bg-slate-800 p-3 break-all overflow-scroll">
+          {textMessage}
+        </p>
         <div className="flex flex-row">
           <button type="button" onClick={heartcounter} className="flex">
             <span className="place-self-center hover:text-red-500">♥</span>

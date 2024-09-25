@@ -5,50 +5,82 @@ import InputField from '../components/InputField';
 import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import LoginButton from '../components/LoginButton';
 import SocialButton from '../components/SocialButton';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
 const Adminpage = () => {
-  const history = useNavigate();
+  // const history = useNavigate();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [userForm, setUserForm] = useState([]);
+  const [errorMessage, setErrormessage] = useState('');
 
-  const [newUser, setNewUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  // const [userForm, setUserForm] = useState([]);
+
+  // const [newUser, setNewUser] = useState({
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  // });
 
   // Function to handle input changes
   const handleInputChange = (value, inputName) => {
-    const newLoginUser = { ...newUser, [inputName]: value };
-    setNewUser(newLoginUser);
+    if (inputName === 'name') {
+      setName(value);
+    } else if (inputName === 'email') {
+      setEmail(value);
+    } else {
+      setPassword(value);
+    }
+
+    // const newLoginUser = { ...newUser, [inputName]: value };
+    // setNewUser(newLoginUser);
   };
 
-  useEffect(() => {
-    setUserForm([
-      { id: 1, name: 'hi', email: 'user1', password: '1234' },
-      { id: 2, name: 'Anne', email: 'user2', password: '5678' },
-      { id: 3, name: 'Diana', email: 'user3', password: '91011' },
-    ]);
-  }, []);
+  // useEffect(() => {
+  //   setUserForm([
+  //     { id: 1, name: 'hi', email: 'user1', password: '1234' },
+  //     { id: 2, name: 'Anne', email: 'user2', password: '5678' },
+  //     { id: 3, name: 'Diana', email: 'user3', password: '91011' },
+  //   ]);
+  // }, []);
 
-  useEffect(() => {
-    console.log('유저 추가 완료');
-  }, [userForm]);
+  // useEffect(() => {
+  //   console.log('유저 추가 완료');
+  // }, [userForm]);
 
   // Function to create a new account
-  const createAccount = (e) => {
+  // const createAccount = (e) => {
+  //   e.preventDefault();
+
+  //   if (newUser.name && newUser.email && newUser.password) {
+  //     const newId = userForm.length + 1; // Generate new user ID
+  //     setUserForm([...userForm, { id: newId, ...newUser }]); // Add new user to the userForm array
+  //     const nueUserForm = [...userForm, { id: newId, ...newUser }];
+  //     console.log('New user added:', newUser);
+  //     console.log('전체', nueUserForm);
+  //     localStorage.setItem('user', JSON.stringify(nueUserForm));
+  //     setNewUser({ name: '', email: '', password: '' });
+  //     alert('회원가입되었습니다.');
+  //     history('/login');
+  //   }
+  // };
+
+  const createAccount = async (e) => {
     e.preventDefault();
 
-    if (newUser.name && newUser.email && newUser.password) {
-      const newId = userForm.length + 1; // Generate new user ID
-      setUserForm([...userForm, { id: newId, ...newUser }]); // Add new user to the userForm array
-      const nueUserForm = [...userForm, { id: newId, ...newUser }];
-      console.log('New user added:', newUser);
-      console.log('전체', nueUserForm);
-      localStorage.setItem('user', JSON.stringify(nueUserForm));
-      setNewUser({ name: '', email: '', password: '' });
-      alert('회원가입되었습니다.');
-      history('/login');
+    if (!name || !email || !password) return;
+
+    try {
+      //계정생성
+      const credential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+    } catch (error) {
+      setErrormessage(error.message);
     }
   };
 
@@ -75,6 +107,7 @@ const Adminpage = () => {
           inputName={'password'}
           inputText={'Password'}
         />
+        {errorMessage && <p>{errorMessage}</p>}
         <LoginButton buttontype={'submit'} buttonName={'Create Account'} />
       </form>
       <p className="from-neutral-100 mb-8">
