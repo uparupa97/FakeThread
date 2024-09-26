@@ -5,9 +5,9 @@ import ContentBox from '../components/ContentBox';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav';
 import { auth, db } from '../firebase';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 
-const Home = ({ postcontent, onEdit, editHome }) => {
+const Home = ({ onEdit, editHome }) => {
   console.log('editFinish', editHome);
   const history = useNavigate();
 
@@ -30,7 +30,7 @@ const Home = ({ postcontent, onEdit, editHome }) => {
 
   const getLiveData = () => {
     const collectionRef = collection(db, 'fakethread');
-    const textQuery = query(collectionRef);
+    const textQuery = query(collectionRef, orderBy('createAt', 'desc'));
     unsubscribe = onSnapshot(textQuery, (snapshot) => {
       const datalist = snapshot.docs.map((item) => {
         console.log('item', item.data());
@@ -50,21 +50,6 @@ const Home = ({ postcontent, onEdit, editHome }) => {
       unsubscribe && unsubscribe();
       console.log('페이지 나감');
     };
-  }, []);
-
-  // 진입시 딱 한번 실행
-  useEffect(() => {
-    if (!postcontent) return;
-    const newFeed = {
-      id: messagecontent.length + 1,
-      idName: 'anonymous',
-      profileImage:
-        'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
-      textMessage: postcontent,
-    };
-    // feedList에 객체 추가
-    setMessagecontent([newFeed, ...messagecontent]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

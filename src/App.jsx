@@ -11,15 +11,10 @@ import Private from './pages/Private';
 import { delay } from './lib/common';
 
 function App() {
-  const [postContent, setPostContent] = useState('');
   const [editContent, setEditContent] = useState(null);
   const [editHome, setEditHome] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
-
-  const postinput = (data) => {
-    setPostContent(data);
-  };
 
   const editinput = (data) => {
     const newFeed = data;
@@ -52,15 +47,9 @@ function App() {
             <Route path="/" element={<Private />}>
               <Route
                 path=""
-                element={
-                  <Home
-                    postcontent={postContent}
-                    onEdit={editinput}
-                    editHome={editHome}
-                  />
-                }
+                element={<Home onEdit={editinput} editHome={editHome} />}
               />
-              <Route path="post" element={<Post onPost={postinput} />} />
+              <Route path="post" element={<Post />} />
               <Route path="profile" element={<Profilepage />} />
               <Route
                 path="edit"

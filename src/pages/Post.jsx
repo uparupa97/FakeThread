@@ -3,19 +3,46 @@ import { Link, useNavigate } from 'react-router-dom';
 import Posting from '../components/Posting';
 import UploadButton from '../components/UploadButton';
 import Nav from '../components/Nav';
+import { auth, db } from '../firebase';
+import { addDoc, collection } from 'firebase/firestore';
 
-const Post = ({ onPost }) => {
+const Post = () => {
   const history = useNavigate();
   const [postContent, setPostContent] = useState('');
+
+  const user = auth.currentUser;
 
   const postinput = (data) => {
     setPostContent(data);
   };
 
-  const handlepost = (event) => {
+  const handlepost = async (event) => {
     event.preventDefault();
-    onPost(postContent);
-    history('/');
+    const resultPost = postContent.trim();
+
+    if (!resultPost) {
+      alert('슈레드 입력해주세요');
+      return;
+    }
+
+    try {
+      const postData = collection(db, 'fakethread');
+
+      const newFeed = {
+        userId: user.uid,
+        idName: user.displayName || 'anonymous',
+        profileImage:
+          user.photoURL ||
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3BeQTqlNPL-juK9NhQoaZKls_bYXJPwZGyQ&s',
+        textMessage: postContent,
+        createAt: Date.now(),
+      };
+      await addDoc(postData, newFeed);
+      history('/');
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
   };
 
   return (
@@ -32,7 +59,11 @@ const Post = ({ onPost }) => {
         <div className="flex-grow border-t border-gray-700"></div>
       </div>
       <form id="post" onSubmit={handlepost}>
-        <Posting postChange={postinput} />
+        <Posting
+          profileImage={user.photoURL}
+          idName={user.displayName}
+          postChange={postinput}
+        />
         <div className="flex flex-row w-full text-start text-gray-500">
           <p className="w-[90%]">누구에게나 답글 및 인용 허용</p>
           <div className="w-full">
