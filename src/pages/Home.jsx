@@ -3,15 +3,17 @@ import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/th
 import UploadButton from '../components/UploadButton';
 import ContentBox from '../components/ContentBox';
 import { useNavigate } from 'react-router-dom';
-import { inimessagecontent } from '../data/response';
 import Nav from '../components/Nav';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 
 const Home = ({ postcontent, onEdit, editHome }) => {
   console.log('editFinish', editHome);
   const history = useNavigate();
 
-  const [messagecontent, setMessagecontent] = useState(inimessagecontent);
+  const [messagecontent, setMessagecontent] = useState([]);
+
+  let unsubscribe = null;
 
   const logoutButton = async () => {
     const ok = window.confirm('정말 로그아웃 하시겠습니까?');
@@ -23,9 +25,32 @@ const Home = ({ postcontent, onEdit, editHome }) => {
     } catch (error) {
       console.log(error);
     }
-
     history('/login');
   };
+
+  const getLiveData = () => {
+    const collectionRef = collection(db, 'fakethread');
+    const textQuery = query(collectionRef);
+    unsubscribe = onSnapshot(textQuery, (snapshot) => {
+      const datalist = snapshot.docs.map((item) => {
+        console.log('item', item.data());
+        return {
+          id: item.id,
+          ...item.data(),
+        };
+      });
+      setMessagecontent(datalist);
+    });
+  };
+
+  useEffect(() => {
+    getLiveData();
+
+    return () => {
+      unsubscribe && unsubscribe();
+      console.log('페이지 나감');
+    };
+  }, []);
 
   // 진입시 딱 한번 실행
   useEffect(() => {

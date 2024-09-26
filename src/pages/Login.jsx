@@ -5,7 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import Threadtext from '../components/Threadtext';
 import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import SocialButton from '../components/SocialButton';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from 'firebase/auth';
 import { auth } from '../firebase';
 
 const Login = () => {
@@ -63,30 +67,19 @@ const Login = () => {
       //성공하든 실패하든 마지막에 실행된다
       setIsLoading(false);
     }
+  };
 
-    // if (!storedUser) {
-    //   alert('user없습니다');
-    //   setLoginUser({ email: '', password: '' });
-    //   return;
-    // }
+  const handleGoogle = async () => {
+    //구글 provider설정
+    const provider = new GoogleAuthProvider();
 
-    // // const storedUser = JSON.parse(localStorage.getItem('user'));
-    // const foundUser = storedUser.find((user) => user.email === loginUser.email);
-    // // const foundUser = storedUser.get(loginUser.email);
-
-    // if (foundUser) {
-    //   if (foundUser.password === loginUser.password) {
-    //     setLoginUser({ email: '', password: '' });
-    //     alert('로그인 성공!');
-    //     history('/');
-    //   } else {
-    //     alert('비밀번호가 틀렸습니다.');
-    //     setLoginUser({ email: '', password: '' });
-    //   }
-    // } else {
-    //   alert('해당되는 사용자는 없습니다.');
-    //   setLoginUser({ email: '', password: '' });
-    // }
+    try {
+      await signInWithPopup(auth, provider);
+      history('/');
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
   };
 
   return (
@@ -129,7 +122,7 @@ const Login = () => {
         <span className="px-4 text-gray-300">or</span>
         <div className="flex-grow border-t border-gray-700"></div>
       </div>
-      <SocialButton />
+      <SocialButton handleGoogle={handleGoogle} />
     </div>
   );
 };

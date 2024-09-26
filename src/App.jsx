@@ -15,7 +15,7 @@ function App() {
   const [editContent, setEditContent] = useState(null);
   const [editHome, setEditHome] = useState(null);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const postinput = (data) => {
     setPostContent(data);

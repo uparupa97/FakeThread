@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { getAuth } from "firebase/auth"
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,4 +22,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
+//인증서비스 사용할것임
 export const auth = getAuth(app); 
+
+//데이터베이스 서비스 사용하겠다.
+export const db = getFirestore(app); 
