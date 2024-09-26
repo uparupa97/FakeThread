@@ -33,7 +33,6 @@ const Home = ({ onEdit, editHome }) => {
     const textQuery = query(collectionRef, orderBy('createAt', 'desc'));
     unsubscribe = onSnapshot(textQuery, (snapshot) => {
       const datalist = snapshot.docs.map((item) => {
-        console.log('item', item.data());
         return {
           id: item.id,
           ...item.data(),
@@ -48,7 +47,6 @@ const Home = ({ onEdit, editHome }) => {
 
     return () => {
       unsubscribe && unsubscribe();
-      console.log('페이지 나감');
     };
   }, []);
 

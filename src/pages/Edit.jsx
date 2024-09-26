@@ -21,7 +21,6 @@ const Edit = ({ editContent, editFinish }) => {
     event.preventDefault();
     const editedItem = { ...editContent, textMessage: postContent };
     editFinish(editedItem);
-    console.log(editedItem, 'editedItem');
     history('/');
   };
 
