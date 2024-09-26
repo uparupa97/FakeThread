@@ -5,13 +5,21 @@ import ContentBox from '../components/ContentBox';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav';
 import { auth, db } from '../firebase';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 
 const Home = ({ onEdit, editHome }) => {
   console.log('editFinish', editHome);
   const history = useNavigate();
 
   const [messagecontent, setMessagecontent] = useState([]);
+  const user = auth.currentUser;
 
   let unsubscribe = null;
 
@@ -60,11 +68,21 @@ const Home = ({ onEdit, editHome }) => {
     setMessagecontent(resultFeedlist);
   }, [editHome]);
 
-  const handleDelete = (selectedData) => {
-    const filterList = messagecontent.filter(
-      (item) => item.id !== selectedData.id
-    );
-    setMessagecontent(filterList);
+  const handleDelete = async (selectedData) => {
+    // const filterList = messagecontent.filter(
+    //   (item) => item.id !== selectedData.id
+    // );
+    // setMessagecontent(filterList);
+
+    if (selectedData.userId !== user.uid) return;
+
+    try {
+      const deleteData = doc(db, 'fakethread', selectedData.id);
+
+      await deleteDoc(deleteData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleRewrite = (selectedData) => {
