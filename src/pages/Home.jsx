@@ -5,6 +5,7 @@ import ContentBox from '../components/ContentBox';
 import { useNavigate } from 'react-router-dom';
 import { inimessagecontent } from '../data/response';
 import Nav from '../components/Nav';
+import { auth } from '../firebase';
 
 const Home = ({ postcontent, onEdit, editHome }) => {
   console.log('editFinish', editHome);
@@ -12,7 +13,17 @@ const Home = ({ postcontent, onEdit, editHome }) => {
 
   const [messagecontent, setMessagecontent] = useState(inimessagecontent);
 
-  const logoutButton = () => {
+  const logoutButton = async () => {
+    const ok = window.confirm('정말 로그아웃 하시겠습니까?');
+
+    if (!ok) return;
+
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.log(error);
+    }
+
     history('/login');
   };
 

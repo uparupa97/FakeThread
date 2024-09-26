@@ -75,7 +75,7 @@ const Adminpage = () => {
     e.preventDefault();
     setErrormessage('');
 
-    if (!name || !email || !password) return;
+    if (isLoading || !name || !email || !password) return;
 
     //이름, 이메일, 패스워드 있으면 서버랑 통신해야하니까 그 동안 버튼 비활성화
     setIsLoading(true);
@@ -91,7 +91,7 @@ const Adminpage = () => {
         displayName: name,
       });
       //게정이 생성되면 홈으로 이동
-      history('/');
+      history('/login');
     } catch (error) {
       setErrormessage(error.message);
     } finally {
