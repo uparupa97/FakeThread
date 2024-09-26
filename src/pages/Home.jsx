@@ -9,9 +9,11 @@ import {
   collection,
   deleteDoc,
   doc,
+  increment,
   onSnapshot,
   orderBy,
   query,
+  updateDoc,
 } from 'firebase/firestore';
 
 const Home = ({ onEdit, editHome }) => {
@@ -93,6 +95,14 @@ const Home = ({ onEdit, editHome }) => {
     history('/edit');
   };
 
+  const handleLike = async (selectedData) => {
+    const likeData = doc(db, 'fakethread', selectedData.id);
+
+    await updateDoc(likeData, { likecount: increment(1) });
+
+    // await updateDoc(likeData);
+  };
+
   return (
     <div className="px-8 pt-6 w-[600px] max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
       <div className="grid grid-cols-3 my-2">
@@ -120,6 +130,7 @@ const Home = ({ onEdit, editHome }) => {
             data={feed}
             onDelete={handleDelete}
             onRewrite={handleRewrite}
+            heartcounter={handleLike}
           />
         ))}
       </div>

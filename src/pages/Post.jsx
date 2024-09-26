@@ -35,6 +35,7 @@ const Post = () => {
           user.photoURL ||
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3BeQTqlNPL-juK9NhQoaZKls_bYXJPwZGyQ&s',
         textMessage: postContent,
+        likecount: 0,
         createAt: Date.now(),
       };
       await addDoc(postData, newFeed);

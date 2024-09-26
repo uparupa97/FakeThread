@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import { CiHeart } from 'react-icons/ci';
 import { FaPen } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 
-const ContentBox = ({ data, onDelete, onRewrite }) => {
-  const [heartCount, setheartCount] = useState(0);
-
-  const { profileImage, idName, textMessage } = data;
-
-  const heartcounter = () => {
-    setheartCount((prev) => prev + 1);
-  };
+const ContentBox = ({ data, onDelete, onRewrite, heartcounter }) => {
+  const { profileImage, idName, textMessage, likecount } = data;
 
   const rewriteContent = () => {
     const ok = window.confirm('다시 쓰실 것인가요?');
@@ -50,10 +44,14 @@ const ContentBox = ({ data, onDelete, onRewrite }) => {
           {textMessage}
         </p>
         <div className="flex flex-row">
-          <button type="button" onClick={heartcounter} className="flex">
+          <button
+            type="button"
+            onClick={() => heartcounter(data)}
+            className="flex"
+          >
             <span className="place-self-center hover:text-red-500">♥</span>
             {/* <CiHeart />{' '} */}
-            <span className="ml-2 text-gray-400">{heartCount}</span>
+            <span className="ml-2 text-gray-400">{likecount}</span>
           </button>
         </div>
       </div>
