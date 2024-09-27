@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Threadtext from '../components/Threadtext';
 import InputField from '../components/InputField';
-import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import LoginButton from '../components/LoginButton';
 import SocialButton from '../components/SocialButton';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
@@ -101,7 +100,7 @@ const Adminpage = () => {
 
   return (
     <div className="pt-36 px-10 w-[600px]">
-      <img src={uparupa} alt="안녕하세요" className="w-40 h-auto m-auto" />
+      <img src={'https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288873.jpg?size=626&ext=jpg'} alt="안녕하세요" className="w-40 h-auto m-auto" />
       <Threadtext />
       <form onSubmit={createAccount}>
         <InputField

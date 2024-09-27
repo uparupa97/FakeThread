@@ -4,7 +4,7 @@ import { FaPen } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 
 const ContentBox = ({ data, onDelete, onRewrite, heartcounter }) => {
-  const { profileImage, idName, textMessage, likecount } = data;
+  const { profileImage, idName, textMessage, likecount, isUser } = data;
 
   const rewriteContent = () => {
     const ok = window.confirm('다시 쓰실 것인가요?');
@@ -33,10 +33,10 @@ const ContentBox = ({ data, onDelete, onRewrite, heartcounter }) => {
           <p className="mt-2 ml-4 font-bold text-xl">{idName}</p>
           <div className="flex ml-auto space-x-2">
             <button type="button">
-              <FaPen className="h-8" onClick={rewriteContent} />
+              {isUser ? <></> : <FaPen className="h-8" onClick={rewriteContent} />}
             </button>
             <button type="button">
-              <MdDelete className="h-8" onClick={deleteContent} />
+              {isUser ? <></> : <MdDelete className="h-8" onClick={deleteContent} />}
             </button>
           </div>
         </div>

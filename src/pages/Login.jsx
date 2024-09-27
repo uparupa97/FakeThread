@@ -3,7 +3,6 @@ import InputField from '../components/InputField';
 import LoginButton from '../components/LoginButton';
 import { Link, useNavigate } from 'react-router-dom';
 import Threadtext from '../components/Threadtext';
-import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import SocialButton from '../components/SocialButton';
 import {
   GoogleAuthProvider,
@@ -84,7 +83,7 @@ const Login = () => {
 
   return (
     <div className="pt-36 px-10 w-[600px]">
-      <img src={uparupa} alt="안녕하세요" className="w-40 h-auto m-auto" />
+      <img src={'https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288873.jpg?size=338&ext=jpg&ga=GA1.1.1819120589.1727308800&semt=ais_hybrid'} alt="안녕하세요" className="w-40 h-auto m-auto" />
       <Threadtext />
       <form id="login-form" onSubmit={handleEvent}>
         <InputField

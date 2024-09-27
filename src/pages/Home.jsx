@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import uparupa from '/Users/mac/Desktop/ project-visualstudiocode/LDuparupa97/threadapp/src/image/chuzlogo.svg';
 import UploadButton from '../components/UploadButton';
 import ContentBox from '../components/ContentBox';
 import { useNavigate } from 'react-router-dom';
@@ -46,6 +45,7 @@ const Home = ({ onEdit, editHome }) => {
         return {
           id: item.id,
           ...item.data(),
+          isUser: user.uid === item.id,
         };
       });
       setMessagecontent(datalist);
@@ -109,9 +109,9 @@ const Home = ({ onEdit, editHome }) => {
         <div></div>
         <div className="place-self-center">
           <img
-            src={uparupa}
+            src={'https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288873.jpg?size=338&ext=jpg&ga=GA1.1.1819120589.1727308800&semt=ais_hybrid'}
             alt="안녕하세요"
-            className="w-40 outline-none shadow-none border-none"
+            className="w-40 h-20 overflow-hidden outline-none shadow-none border-none object-contain"
           />
         </div>
         <div className="justify-self-end place-self-center">
