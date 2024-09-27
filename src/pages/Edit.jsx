@@ -15,12 +15,9 @@ const Edit = ({ editContent }) => {
   const postinput = (data) => {
     setPostContent(data);
   };
-  console.log('postcontent', editContent);
 
   const handleEdit = async (event) => {
     event.preventDefault(); 
-
-    console.log('postcontent', editContent);
 
       const rewriteData = doc(db, 'fakethread', editContent.id);
       await updateDoc(rewriteData, { textMessage : postContent});

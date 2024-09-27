@@ -15,8 +15,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 
-const Home = ({ onEdit, editHome }) => {
-  console.log('editFinish', editHome);
+const Home = ({ onEdit }) => {
   const history = useNavigate();
 
   const [messagecontent, setMessagecontent] = useState([]);
@@ -83,8 +82,6 @@ const Home = ({ onEdit, editHome }) => {
     const likeData = doc(db, 'fakethread', selectedData.id);
 
     await updateDoc(likeData, { likecount: increment(1) });
-
-    // await updateDoc(likeData);
   };
 
   return (
