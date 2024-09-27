@@ -33,10 +33,10 @@ const ContentBox = ({ data, onDelete, onRewrite, heartcounter }) => {
           <p className="mt-2 ml-4 font-bold text-xl">{idName}</p>
           <div className="flex ml-auto space-x-2">
             <button type="button">
-              {isUser ? <></> : <FaPen className="h-8" onClick={rewriteContent} />}
+              {!isUser ? <></> : <FaPen className="h-8" onClick={rewriteContent} />}
             </button>
             <button type="button">
-              {isUser ? <></> : <MdDelete className="h-8" onClick={deleteContent} />}
+              {!isUser ? <></> : <MdDelete className="h-8" onClick={deleteContent} />}
             </button>
           </div>
         </div>

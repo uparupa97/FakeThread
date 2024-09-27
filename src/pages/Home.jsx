@@ -42,10 +42,11 @@ const Home = ({ onEdit, editHome }) => {
     const textQuery = query(collectionRef, orderBy('createAt', 'desc'));
     unsubscribe = onSnapshot(textQuery, (snapshot) => {
       const datalist = snapshot.docs.map((item) => {
+        const data = item.data()
         return {
           id: item.id,
-          ...item.data(),
-          isUser: user.uid === item.id,
+          ...data,
+          isUser: user.uid === data.userId,
         };
       });
       setMessagecontent(datalist);
