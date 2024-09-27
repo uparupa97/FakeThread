@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import Nav from './Nav';
 
-const Posting = ({ postChange, profileImage, idName, textMessage }) => {
-  const [value, setValue] = useState(textMessage);
+const Posting = ({ postChange, profileImage , idName, defaultValue }) => {
+
+  const [value, setValue] = useState(defaultValue);
 
   const handleChange = (event) => {
-    postChange(event.target.value);
-    setValue(event.target.value);
+    const { value } = event.target;
+    postChange(value);
+    setValue(value);
   };
+   
 
   return (
     <div className="px-3 py-2 flex flex-row">

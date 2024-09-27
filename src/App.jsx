@@ -12,13 +12,11 @@ import { delay } from './lib/common';
 
 function App() {
   const [editContent, setEditContent] = useState(null);
-  const [editHome, setEditHome] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
 
   const editinput = (data) => {
-    const newFeed = data;
-    setEditContent(newFeed);
+    setEditContent(data);
   };
 
   const init = async () => {
@@ -47,7 +45,7 @@ function App() {
             <Route path="/" element={<Private />}>
               <Route
                 path=""
-                element={<Home onEdit={editinput} editHome={editHome} />}
+                element={<Home onEdit={editinput} />}
               />
               <Route path="post" element={<Post />} />
               <Route path="profile" element={<Profilepage />} />
@@ -56,7 +54,6 @@ function App() {
                 element={
                   <Edit
                     editContent={editContent}
-                    editFinish={(data) => setEditHome(data)}
                   />
                 }
               />

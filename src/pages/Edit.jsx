@@ -3,26 +3,32 @@ import { Link, useNavigate } from 'react-router-dom';
 import Posting from '../components/Posting';
 import UploadButton from '../components/UploadButton';
 import Nav from '../components/Nav';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
-const Edit = ({ editContent, editFinish }) => {
-  console.log('editonce', editContent);
+const Edit = ({ editContent }) => {
 
-  const { profileImage, textMessage, idName } = editContent;
-
-  const [postContent, setPostContent] = useState(textMessage);
+  const [postContent, setPostContent] = useState("");
 
   const history = useNavigate();
 
   const postinput = (data) => {
     setPostContent(data);
   };
+  console.log('postcontent', editContent);
 
-  const handleEdit = (event) => {
-    event.preventDefault();
-    const editedItem = { ...editContent, textMessage: postContent };
-    editFinish(editedItem);
-    history('/');
-  };
+  const handleEdit = async (event) => {
+    event.preventDefault(); 
+
+    console.log('postcontent', editContent);
+
+      const rewriteData = doc(db, 'fakethread', editContent.id);
+      await updateDoc(rewriteData, { textMessage : postContent});
+      history('/');
+     }
+    
+    
+  
 
   return (
     <div className="px-8 pt-6 w-[600px] max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
@@ -40,9 +46,9 @@ const Edit = ({ editContent, editFinish }) => {
       <form id="post" onSubmit={handleEdit}>
         <Posting
           postChange={postinput}
-          profileImage={profileImage}
-          idName={idName}
-          textMessage={textMessage}
+          profileImage={editContent.profileImage}
+          idName={editContent.idName}
+          defaultValue={editContent.textMessage}
         />
         <div className="flex flex-row w-full text-start text-gray-500">
           <p className="w-[90%]">누구에게나 답글 및 인용 허용</p>

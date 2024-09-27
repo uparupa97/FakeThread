@@ -61,21 +61,7 @@ const Home = ({ onEdit, editHome }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!editHome) return;
-    const resultFeedlist = messagecontent.map((item) => {
-      if (item.id === editHome.id) return editHome;
-      return item;
-    });
-
-    setMessagecontent(resultFeedlist);
-  }, [editHome]);
-
   const handleDelete = async (selectedData) => {
-    // const filterList = messagecontent.filter(
-    //   (item) => item.id !== selectedData.id
-    // );
-    // setMessagecontent(filterList);
 
     if (selectedData.userId !== user.uid) return;
 
@@ -89,10 +75,7 @@ const Home = ({ onEdit, editHome }) => {
   };
 
   const handleRewrite = (selectedData) => {
-    const filterList = messagecontent.filter(
-      (item) => item.id === selectedData.id
-    );
-    onEdit(filterList[0]);
+    onEdit(selectedData); 
     history('/edit');
   };
 
